@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta – is.code</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --ink-mid: #4a4a45;
+    --ink-light: #8a8a82;
+    --bg: #fafaf8;
+    --bg-warm: #f4f2ed;
+    --accent: #c8862a;
+    --accent-light: #f5ecd8;
+    --border: rgba(26,26,24,0.12);
+    --border-strong: rgba(26,26,24,0.22);
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .serif { font-family: 'DM Serif Display', serif; }
+
+  /* PAGE WRAPPER */
+  .page {
+    max-width: 1260px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* COVER */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 3.5rem 0 3rem;
+    border-bottom: 1px solid var(--border-strong);
+  }
+
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .brand img {
+   width: 150px;
+    
+  }
+
+  .contact-top {
+    text-align: right;
+    font-size: 12px;
+    color: var(--ink-light);
+    line-height: 1.8;
+  }
+
+  .contact-top a { color: var(--ink-light); text-decoration: none; }
+
+  .cover-title {
+    padding: 4rem 0 2rem;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+  }
+
+  .cover-title h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    line-height: 1.1;
+    font-weight: 400;
+    color: var(--ink);
+    max-width: 600px;
+  }
+
+  .cover-title h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .cover-subtitle {
+    margin-top: 1.5rem;
+    font-size: 15px;
+    color: var(--ink-mid);
+    max-width: 500px;
+    line-height: 1.7;
+  }
+
+  .cover-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+    margin-top: 2rem;
+  }
+
+  .meta-item {
+    padding-right: 2rem;
+    border-right: 1px solid var(--border);
+    margin-right: 2rem;
+  }
+
+  .meta-item:last-child { border-right: none; margin-right: 0; }
+
+  .meta-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.4rem;
+  }
+
+  .meta-value {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+    color: var(--ink);
+  }
+
+  .section-title em { font-style: italic; color: var(--accent); }
+
+  .section-body {
+    font-size: 15px;
+    color: var(--ink-mid);
+    line-height: 1.75;
+    max-width: 580px;
+  }
+
+  /* WHY CARDS */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    margin-top: 3rem;
+    border: 1px solid var(--border);
+  }
+
+  .why-card {
+    background: var(--bg);
+    padding: 1.75rem 1.5rem;
+  }
+
+  .why-num {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .why-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .why-body {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.65;
+  }
+
+  /* ESCOPO */
+  .scope-item {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .scope-item:last-child { border-bottom: none; }
+
+  .scope-phase {
+    padding-top: 0.25rem;
+  }
+
+  .scope-phase-num {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .scope-phase-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .scope-phase-price {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .scope-desc {
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .scope-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .scope-list li {
+    font-size: 13px;
+    color: var(--ink-mid);
+    padding-left: 1.1rem;
+    position: relative;
+  }
+
+  .scope-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 11px;
+  }
+
+  /* CUSTOS TABLE */
+  .costs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    font-size: 13px;
+  }
+
+  .costs-table th {
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-strong);
+    font-weight: 500;
+  }
+
+  .costs-table td {
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink-mid);
+  }
+
+  .costs-table td:last-child {
+    text-align: right;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .costs-table tr:last-child td { border-bottom: none; }
+
+  .costs-scenario {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .scenario-card {
+    background: var(--bg);
+    padding: 1.5rem;
+  }
+
+  .scenario-card.featured {
+    background: var(--accent-light);
+  }
+
+  .scenario-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-light);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+  }
+
+  .scenario-card.featured .scenario-label { color: var(--accent); }
+
+  .scenario-price {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .scenario-items {
+    font-size: 12px;
+    color: var(--ink-mid);
+    line-height: 1.8;
+  }
+
+  /* PROCESS */
+  .process-steps {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .step {
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--border);
+  }
+
+  .step.active { border-left-color: var(--accent); }
+
+  .step-num {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--ink-light);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .step.active .step-num { color: var(--accent); }
+
+  .step-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+
+  .step-body {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.65;
+  }
+
+  /* ECOSYSTEM */
+  .eco-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .eco-pill {
+    background: var(--bg-warm);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 0.6rem 1.25rem;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink-mid);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .eco-pill-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  /* INVESTMENT */
+  .investment-block {
+    background: var(--ink);
+    color: #fafaf8;
+    padding: 3rem;
+    margin-top: 3rem;
+  }
+
+  .inv-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 1rem;
+  }
+
+  .inv-total {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: #fafaf8;
+    margin-bottom: 0.5rem;
+  }
+
+  .inv-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 2.5rem;
+  }
+
+  .inv-breakdown {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.1);
+  }/* PAYMENT OPTIONS */
+.payment-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 1px;
+}
+
+.payment-card {
+  background: var(--bg);
+  padding: 1.5rem;
+}
+
+.payment-card--highlight {
+  background: var(--accent-light);
+}
+
+.payment-badge {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.payment-title {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.payment-value {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.6rem;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+.payment-value-unit {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ink-mid);
+}
+
+.payment-sub {
+  font-size: 12px;
+  color: var(--ink-light);
+  line-height: 1.5;
+}
+
+  .inv-item {
+    padding: 1.25rem;
+    background: var(--ink);
+  }
+
+  .inv-item-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .inv-item-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fafaf8;
+  }
+
+  /* PRAZO */
+  .prazo-box {
+    background: var(--bg-warm);
+    border: 1px solid var(--border);
+    padding: 1.75rem;
+    margin-top: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .prazo-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .prazo-text {
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.7;
+  }
+
+  .prazo-text strong { color: var(--ink); font-weight: 600; }
+
+  /* CLOSING */
+  .closing {
+    padding: 5rem 0 4rem;
+  }
+
+  .closing-body {
+    font-size: 15px;
+    color: var(--ink-mid);
+    line-height: 1.8;
+    max-width: 560px;
+    margin-bottom: 3rem;
+  }
+
+  .closing-sig {
+    font-size: 13px;
+    color: var(--ink-light);
+    line-height: 2;
+  }
+
+  .closing-sig strong { color: var(--ink); font-weight: 600; }
+
+  .closing-sig a { color: var(--ink-light); text-decoration: none; }
+
+  /* FOOTER */
+  .footer {
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: var(--ink-light);
+  }
+
+  /* DIVIDER */
+  hr.thin {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2rem 0;
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 0 1.25rem; }
+    .cover-meta { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .meta-item { border-right: none; margin-right: 0; }
+    .why-grid { grid-template-columns: 1fr; }
+    .scope-item { grid-template-columns: 1fr; gap: 1.25rem; }
+    .costs-scenario { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+    .inv-breakdown { grid-template-columns: 1fr; }
+    .cover-top { flex-direction: column; gap: 1rem; }
+    .contact-top { text-align: left; }
+  }
+
+  @media print {
+    body { background: white; }
+    .cover { min-height: auto; page-break-after: always; }
+    .section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-top">
+      <div class="brand"><img src="Group 8.png" alt=""></div>
+      <div class="contact-top">
+        <a href="tel:15996823970">15 99682-3970</a><br>
+        <a href="https://iscode.com.br">iscode.com.br</a><br>
+        <a href="mailto:iscodest@gmail.com">iscodest@gmail.com</a><br>
+        Itaporanga — SP
+      </div>
+    </div>
+
+    <div class="cover-title">
+      <div class="eyebrow">Proposta de Desenvolvimento — 2026</div>
+      <h1>E-commerce de <em>Óculos</em> na Shopify</h1>
+      <p class="cover-subtitle">
+        Uma loja online completa para ótica — design profissional, integração com ERP, programa de afiliados, automação de marketing e estrutura pronta para crescer.
+      </p>
+    </div>
+
+    <div class="cover-meta">
+      <div class="meta-item">
+        <div class="meta-label">Data</div>
+        <div class="meta-value">Junho 2026</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Plataforma</div>
+        <div class="meta-value">Shopify + Integrações</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Prazo estimado</div>
+        <div class="meta-value">15–30 dias úteis</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Validade</div>
+        <div class="meta-value">15 dias</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APRESENTAÇÃO -->
+  <div class="section">
+    <div class="section-label">Apresentação</div>
+    <h2 class="section-title">Uma operação digital construída para <em>vender mais</em></h2>
+    <p class="section-body">
+      Esta proposta cobre a implantação completa de um e-commerce para ótica na plataforma Shopify — da configuração da loja até a integração com ERP, sistema de afiliados, automação de e-mail marketing e logística. Tudo em um único projeto, entregue pronto para faturar.
+    </p>
+    <p class="section-body" style="margin-top: 1rem;">
+      O foco é entregar não só tecnologia, mas uma operação funcional: checkout testado, nota fiscal automática, frete calculado em tempo real, recuperação de carrinho e estrutura preparada para crescer com afiliados e influenciadores.
+    </p>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <div class="why-title">Loja 100% pronta para vender</div>
+        <div class="why-body">Do design ao checkout — configurada, testada e publicada. Sem pendências técnicas para o cliente resolver depois.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <div class="why-title">Integração fiscal e logística</div>
+        <div class="why-body">Bling ERP + Melhor Envio integrados desde o início. Nota fiscal e rastreio de pedidos automáticos a cada venda.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <div class="why-title">Programa de afiliados</div>
+        <div class="why-body">Cupons exclusivos para influenciadores, controle de vendas por afiliado e comissões configuradas do jeito que a marca precisa.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">04</div>
+        <div class="why-title">Marketing automatizado</div>
+        <div class="why-body">Klaviyo configurado com fluxos de boas-vindas, recuperação de carrinho e pós-venda — sem depender de envio manual.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">05</div>
+        <div class="why-title">Performance e SEO</div>
+        <div class="why-body">Loja otimizada para carregamento rápido, código semântico e boas práticas que favorecem o posicionamento orgânico.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">06</div>
+        <div class="why-title">Treinamento incluído</div>
+        <div class="why-body">Go-live com treinamento para a equipe — painel Shopify, cadastro de produtos, gestão de pedidos e afiliados.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ESCOPO -->
+  <div class="section">
+    <div class="section-label">Escopo detalhado</div>
+    <h2 class="section-title">O que está <em>incluído</em></h2>
+
+    <div class="scope-item">
+      <div class="scope-phase">
+        <div class="scope-phase-num">Plataforma</div>
+        <div class="scope-phase-title">Design e configuração da loja</div>
+      </div>
+      <div>
+        <p class="scope-desc">Criação e personalização completa da loja Shopify, fiel à identidade visual da ótica — domínio, SSL, checkout e páginas institucionais incluídos.</p>
+        <ul class="scope-list">
+          <li>Configuração completa da conta Shopify</li>
+          <li>Personalização do tema conforme identidade visual da marca</li>
+          <li>Configuração de domínio e certificado SSL</li>
+          <li>Estruturação das páginas institucionais (sobre, contato, política, etc.)</li>
+          <li>Configuração dos meios de pagamento (cartão, Pix, boleto)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="scope-item">
+      <div class="scope-phase">
+        <div class="scope-phase-num">Catálogo</div>
+        <div class="scope-phase-title">Produtos e jornada de compra</div>
+      </div>
+      <div>
+        <p class="scope-desc">Organização do catálogo, configuração de variações (modelo, cor, grau) e testes completos de compra do início ao fim.</p>
+        <ul class="scope-list">
+          <li>Cadastro e organização inicial do catálogo de produtos</li>
+          <li>Configuração de variações (armação, lente, cor, grau)</li>
+          <li>Configuração de fretes via Melhor Envio</li>
+          <li>Testes completos da jornada de compra</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="scope-item">
+      <div class="scope-phase">
+        <div class="scope-phase-num">ERP & Fiscal</div>
+        <div class="scope-phase-title">Bling e emissão de notas</div>
+      </div>
+      <div>
+        <p class="scope-desc">Integração com o Bling para sincronizar pedidos, estoque e emissão automática de NF-e a cada venda realizada na loja.</p>
+        <ul class="scope-list">
+          <li>Integração Shopify ↔ Bling ERP</li>
+          <li>Sincronização automática de pedidos e estoque</li>
+          <li>Configuração da emissão automática de notas fiscais</li>
+          <li>Testes de ciclo completo (venda → NF → rastreio)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="scope-item">
+      <div class="scope-phase">
+        <div class="scope-phase-num">Afiliados</div>
+        <div class="scope-phase-title">Programa para influenciadores</div>
+      </div>
+      <div>
+        <p class="scope-desc">Implementação do UpPromote para gerenciar afiliados, cupons exclusivos e comissões — ideal para óticas que trabalham com influenciadores de moda e saúde.</p>
+        <ul class="scope-list">
+          <li>Instalação e configuração do UpPromote</li>
+          <li>Cadastro inicial de afiliados</li>
+          <li>Geração de cupons exclusivos por afiliado</li>
+          <li>Controle de vendas e relatórios por afiliado</li>
+          <li>Configuração de comissões e regras de pagamento</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="scope-item">
+      <div class="scope-phase">
+        <div class="scope-phase-num">Marketing</div>
+        <div class="scope-phase-title">E-mail marketing e automação</div>
+      </div>
+      <div>
+        <p class="scope-desc">Klaviyo configurado com os fluxos essenciais — boas-vindas, carrinho abandonado, pós-venda e relacionamento com o cliente.</p>
+        <ul class="scope-list">
+          <li>Configuração da conta Klaviyo</li>
+          <li>Fluxo de boas-vindas (novo cadastro)</li>
+          <li>Recuperação de carrinho abandonado</li>
+          <li>Sequência pós-venda e fidelização</li>
+          <li>Integração Klaviyo ↔ Shopify</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="scope-item">
+      <div class="scope-phase">
+        <div class="scope-phase-num">Entrega</div>
+        <div class="scope-phase-title">Go-live e treinamento</div>
+      </div>
+      <div>
+        <p class="scope-desc">Publicação da loja com acompanhamento, testes finais e treinamento da equipe para operar a plataforma com autonomia.</p>
+        <ul class="scope-list">
+          <li>Testes finais completos da operação</li>
+          <li>Publicação e go-live da loja</li>
+          <li>Treinamento para uso do painel Shopify</li>
+          <li>Orientação para gestão de pedidos, produtos e afiliados</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUSTOS MENSAIS -->
+  <div class="section">
+    <div class="section-label">Ferramentas mensais</div>
+    <h2 class="section-title">Custos da <em>operação</em></h2>
+    <p class="section-body">As ferramentas abaixo são contratadas diretamente pelo cliente — sem intermediário. Os valores são cobrados pelas próprias plataformas.</p>
+
+    <table class="costs-table">
+      <thead>
+        <tr>
+          <th>Ferramenta</th>
+          <th>Função</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Shopify Basic</strong></td>
+          <td style="color: var(--ink-light);">Plataforma da loja</td>
+          <td>US$ 19/mês</td>
+        </tr>
+        <tr>
+          <td><strong>Shopify Grow</strong></td>
+          <td style="color: var(--ink-light);">Plataforma (versão avançada)</td>
+          <td>US$ 52/mês</td>
+        </tr>
+        <tr>
+          <td><strong>Bling ERP</strong></td>
+          <td style="color: var(--ink-light);">ERP e emissão de NF-e</td>
+          <td>A partir de R$ 59/mês</td>
+        </tr>
+        <tr>
+          <td><strong>UpPromote</strong></td>
+          <td style="color: var(--ink-light);">Programa de afiliados</td>
+          <td>Gratuito ou US$ 29/mês</td>
+        </tr>
+        <tr>
+          <td><strong>Klaviyo</strong></td>
+          <td style="color: var(--ink-light);">E-mail marketing</td>
+          <td>Gratuito inicialmente</td>
+        </tr>
+        <tr>
+          <td><strong>Melhor Envio</strong></td>
+          <td style="color: var(--ink-light);">Frete e rastreio</td>
+          <td>Sem mensalidade</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="costs-scenario">
+      <div class="scenario-card">
+        <div class="scenario-label">Operação inicial</div>
+        <div class="scenario-price">~R$ 170–250/mês</div>
+        <div class="scenario-items">
+          Shopify Basic · Bling · afiliados grátis
+        </div>
+      </div>
+      <div class="scenario-card featured">
+        <div class="scenario-label">Operação completa</div>
+        <div class="scenario-price">~R$ 500–700/mês</div>
+        <div class="scenario-items">
+          Shopify Grow · Bling · UpPromote pago
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESSO -->
+  <div class="section">
+    <div class="section-label">Como trabalhamos</div>
+    <h2 class="section-title">Do briefing ao <em>go-live</em></h2>
+
+    <div class="process-steps">
+      <div class="step active">
+        <div class="step-num">01 — Briefing</div>
+        <div class="step-title">Alinhamento inicial</div>
+        <div class="step-body">Reunião para mapear necessidades, identidade da marca, produtos e prioridades do projeto.</div>
+      </div>
+      <div class="step active">
+        <div class="step-num">02 — Desenvolvimento</div>
+        <div class="step-title">Construção da loja</div>
+        <div class="step-body">Implementação com atualizações regulares — o cliente acompanha o progresso em tempo real.</div>
+      </div>
+      <div class="step active">
+        <div class="step-num">03 — Revisão</div>
+        <div class="step-title">Testes e ajustes</div>
+        <div class="step-body">Rodada completa de testes e refinamentos antes da publicação — qualidade garantida antes do ar.</div>
+      </div>
+      <div class="step active">
+        <div class="step-num">04 — Entrega</div>
+        <div class="step-title">Go-live e treinamento</div>
+        <div class="step-body">Publicação com acompanhamento e treinamento da equipe para operar com autonomia.</div>
+      </div>
+    </div>
+
+    <div class="prazo-box">
+      <div class="prazo-icon">⏱</div>
+      <div class="prazo-text">
+        <strong>Prazo estimado: 20 a 45 dias úteis</strong> — contados a partir da aprovação da proposta e envio dos materiais necessários (logo, fotos de produtos, textos e dados da empresa).
+      </div>
+    </div>
+  </div>
+
+  <!-- ECOSSISTEMA -->
+  <div class="section">
+    <div class="section-label">Tecnologia</div>
+    <h2 class="section-title">Ecossistema <em>integrado</em></h2>
+    <p class="section-body">Todas as ferramentas conectadas e conversando entre si — do pedido à nota fiscal, do afiliado ao e-mail automático.</p>
+
+    <div class="eco-grid">
+      <div class="eco-pill"><span class="eco-pill-dot"></span>Shopify — Loja</div>
+      <div class="eco-pill"><span class="eco-pill-dot"></span>Bling — ERP / NF-e</div>
+      <div class="eco-pill"><span class="eco-pill-dot"></span>Melhor Envio — Frete</div>
+      <div class="eco-pill"><span class="eco-pill-dot"></span>Klaviyo — E-mail</div>
+      <div class="eco-pill"><span class="eco-pill-dot"></span>UpPromote — Afiliados</div>
+    </div>
+  </div>
+
+  <!-- INVESTIMENTO -->
+<div class="section">
+  <div class="section-label">Resumo financeiro</div>
+  <h2 class="section-title">Investimento</h2>
+  <p class="section-body">Valor único de desenvolvimento e implantação. Sem taxas ocultas — as ferramentas mensais são contratadas diretamente pelo cliente.</p>
+
+  <div class="investment-block">
+    <div class="inv-eyebrow">Investimento total — desenvolvimento e implantação</div>
+    <div class="inv-total">R$ 6.500,00</div>
+    <div class="inv-sub">Válido por 15 dias</div>
+    
+    <div class="payment-card payment-card--highlight">
+      <div class="payment-badge">Melhor valor</div>
+      <div class="payment-title">Pix à vista</div>
+      <div class="payment-value">R$ 5.850,00</div>
+      <div class="payment-sub">10% de desconto · economia de R$ 650</div>
+    </div>
+    <div class="payment-card">
+      <div class="payment-title">Entrada + entrega</div>
+      <div class="payment-value">2× R$ 3.250,00</div>
+      <div class="payment-sub">50% no início · 50% na entrega</div>
+    </div>
+    <div class="payment-card">
+      <div class="payment-title">10× sem juros</div>
+      <div class="payment-value">R$ 650,00<span class="payment-value-unit">/mês</span></div>
+      <div class="payment-sub">No cartão de crédito · total R$ 6.500</div>
+    </div>
+  </div>
+   
+  </div>
+
+  <div class="payment-options">
+    
+</div>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <div class="section-label">Próximos passos</div>
+    <h2 class="section-title" style="margin-bottom:1.5rem;">Prontos para <em>começar</em></h2>
+    <p class="closing-body">
+      Esta proposta foi construída para ser clara e realizável. Ao aprovar, damos início ao briefing e ao cronograma detalhado do projeto. Se houver necessidade de ajustar o escopo ou as condições, estamos disponíveis para conversar.
+    </p>
+    <p class="closing-body">
+      Será um prazer construir essa operação junto com vocês.
+    </p>
+
+    <div class="closing-sig">
+      <strong>Gustavo</strong><br>
+      is.code <br>
+      <a href="tel:15996823970">15 99682-3970</a> · <a href="https://iscode.com.br">iscode.com.br</a><br>
+      <a href="mailto:iscodest@gmail.com">iscodest@gmail.com</a> · Itaporanga — SP
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>is.code · 2026</span>
+    <span>Proposta válida por 15 dias</span>
+  </div>
+
+</div>
+</body>
+</html>
